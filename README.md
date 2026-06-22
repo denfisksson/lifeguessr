@@ -1,16 +1,24 @@
-# React + Vite
+# Lifeguessr
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A browser game where you identify historical figures from their birth and death dates and locations. A world map shows two pins — one for where the person was born, one for where they died — along with the years. Your job is to name them.
 
-Currently, two official plugins are available:
+## How it works
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Each round presents a pair of map markers with dates and place names as your only clues. You type a guess and submit it. Spelling does not need to be exact — the game uses fuzzy matching so minor typos are forgiven. If you get stuck, you can reveal the person's profession or a short hint, skip the figure entirely, or give up and see the answer.
 
-## React Compiler
+The game currently includes around 200 figures spanning ancient history to the late twentieth century, drawn from politics, science, the arts, sport, and literature.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Stack
 
-## Expanding the ESLint configuration
+Built with React and Vite. Maps rendered with react-simple-maps and d3-geo. No backend or database — runs entirely in the browser as a static site.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Running locally
+
+```
+npm install
+npm run dev
+```
+
+## License
+
+MIT

@@ -37,10 +37,16 @@ function computeProjectionConfig(birth, death, isSame) {
   const lonSpan = Math.abs(lon1 - lon2);
   const latSpan = Math.abs(lat1 - lat2);
 
-  const scaleForLon = lonSpan > 0.5 ? 34600 / (lonSpan * 2.5) : 1200;
-  const scaleForLat = latSpan > 0.5 ? 17300 / (latSpan * 2.5) : 1200;
+  // Minimum visible extent and a wider padding multiplier (3.0 vs 2.5)
+  // keeps both pins comfortably inside the viewport for all span combinations,
+  // including cross-country pairs with a large latitude difference.
+  const effectiveLonSpan = Math.max(lonSpan, 30);
+  const effectiveLatSpan = Math.max(latSpan, 22);
 
-  const scale = Math.min(scaleForLon, scaleForLat, 1100);
+  const scaleForLon = 34600 / (effectiveLonSpan * 3.0);
+  const scaleForLat = 17300 / (effectiveLatSpan * 3.0);
+
+  const scale = Math.min(scaleForLon, scaleForLat, 800);
   return { center: [centerLon, centerLat], scale: Math.max(scale, 140) };
 }
 
