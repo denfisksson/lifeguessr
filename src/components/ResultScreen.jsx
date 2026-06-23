@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 function formatTime(s) {
   const m = Math.floor(s / 60);
@@ -6,10 +6,38 @@ function formatTime(s) {
   return `${m}:${String(sec).padStart(2, "0")}`;
 }
 
-export default function ResultScreen({ person, outcome, elapsed, onNext, onClose }) {
+function buildShareText(outcome, elapsed, hintLevel, wrongCount) {
+  const time = formatTime(elapsed);
+  const won = outcome === "won";
+  const hints = hintLevel === 0 ? "no hints" : hintLevel === 1 ? "1 hint" : "2 hints";
+  const wrongs = wrongCount > 0 ? ` · ${wrongCount} wrong` : "";
+  const url = window.location.origin;
+  if (won) {
+    return `LIFEGUESSR ◈\n✦ CORRECT · ${time} · ${hints}${wrongs}\n${url}`;
+  }
+  return `LIFEGUESSR ◈\n✦ REVEALED · ${time}\n${url}`;
+}
+
+export default function ResultScreen({ person, outcome, elapsed, hintLevel, wrongCount, onNext, onClose }) {
   const won = outcome === "won";
   const [photoUrl, setPhotoUrl] = useState(null);
   const [photoStatus, setPhotoStatus] = useState("loading");
+  const [copied, setCopied] = useState(false);
+
+  const handleShareResult = useCallback(async () => {
+    const text = buildShareText(outcome, elapsed, hintLevel, wrongCount);
+    if (navigator.share) {
+      try {
+        await navigator.share({ title: "Lifeguessr", text });
+      } catch {
+        // user cancelled
+      }
+    } else {
+      await navigator.clipboard.writeText(text);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
+  }, [outcome, elapsed, hintLevel, wrongCount]);
 
   useEffect(() => {
     setPhotoUrl(null);
@@ -106,6 +134,9 @@ export default function ResultScreen({ person, outcome, elapsed, onNext, onClose
             <span className="btn-deco">✦</span>
             NEXT FIGURE
             <span className="btn-deco">✦</span>
+          </button>
+          <button onClick={handleShareResult} className="btn-share-result">
+            {copied ? "✦ COPIED ✦" : "◈ SHARE RESULT ◈"}
           </button>
           <button onClick={onClose} className="btn-close-result">
             CLOSE
