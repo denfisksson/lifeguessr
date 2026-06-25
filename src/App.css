@@ -125,7 +125,7 @@ body {
   width: 100%;
   border-bottom: 1px solid var(--gold-dark);
   position: relative;
-  max-height: 54vh;
+  max-height: 60vh;
   overflow: hidden;
 }
 
@@ -489,7 +489,7 @@ body {
   align-items: center;
   justify-content: center;
   gap: 12px;
-  background: linear-gradient(135deg, #3a2400 0%, #2a1800 50%, #3a2400 100%);
+  background: linear-gradient(135deg, #5c3400 0%, #3e2200 50%, #5c3400 100%);
   border: 1px solid var(--gold);
   color: var(--gold-light);
   font-family: "Cinzel", serif;
@@ -511,7 +511,7 @@ body {
 }
 
 .btn-primary:hover {
-  background: linear-gradient(135deg, #4a3000 0%, #3a2400 50%, #4a3000 100%);
+  background: linear-gradient(135deg, #6e4000 0%, #4e2e00 50%, #6e4000 100%);
   border-color: var(--gold-light);
   color: var(--gold-pale);
   box-shadow: 0 0 28px rgba(201, 168, 76, 0.25);
@@ -536,7 +536,7 @@ body {
 }
 
 .btn-secondary {
-  background: transparent;
+  background: #2e1c04;
   border: 1px solid var(--gold-dark);
   color: var(--text);
   font-family: "Cinzel", serif;
@@ -568,7 +568,7 @@ body {
 }
 
 .btn-give-up {
-  background: transparent;
+  background: #1e0b0b;
   border: 1px solid #6a3535;
   color: #a07070;
   font-family: "Cinzel", serif;
@@ -807,7 +807,7 @@ body {
 }
 
 .btn-close-result {
-  background: transparent;
+  background: #221408;
   border: 1px solid #3a2a1a;
   color: var(--text-dim);
   font-family: "Cinzel", serif;
@@ -904,7 +904,7 @@ body {
 
 /* ── SHARE RESULT BUTTON ── */
 .btn-share-result {
-  background: transparent;
+  background: rgba(139, 105, 20, 0.18);
   border: 1px solid var(--gold-dark);
   color: var(--gold-dark);
   font-family: "Cinzel", serif;
@@ -918,7 +918,7 @@ body {
 }
 
 .btn-share-result:hover {
-  background: rgba(180, 140, 60, 0.08);
+  background: rgba(180, 140, 60, 0.28);
   color: var(--gold);
   border-color: var(--gold);
 }

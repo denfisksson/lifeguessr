@@ -41,10 +41,10 @@ function computeProjectionConfig(birth, death, isSame) {
   // keeps both pins comfortably inside the viewport for all span combinations,
   // including cross-country pairs with a large latitude difference.
   const effectiveLonSpan = Math.max(lonSpan, 30);
-  const effectiveLatSpan = Math.max(latSpan, 22);
+  const effectiveLatSpan = Math.max(latSpan, 16);
 
   const scaleForLon = 34600 / (effectiveLonSpan * 3.0);
-  const scaleForLat = 17300 / (effectiveLatSpan * 3.0);
+  const scaleForLat = 12700 / (effectiveLatSpan * 3.0);
 
   const scale = Math.min(scaleForLon, scaleForLat, 800);
   return { center: [centerLon, centerLat], scale: Math.max(scale, 140) };
@@ -130,7 +130,7 @@ export default function WorldMap({ person }) {
     <div className="map-container">
       <ComposableMap
         projection="geoNaturalEarth1"
-        height={380}
+        height={280}
         style={{ width: "100%", height: "auto", display: "block" }}
         projectionConfig={projConfig}
       >
